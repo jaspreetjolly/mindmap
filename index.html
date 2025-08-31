@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mindmaps Repository</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Faded background image */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("images/mindmap-bg.png") no-repeat center center fixed;
+      background-size: cover;
+      opacity: 0.08;
+      z-index: -1;
+    }
+
+    header {
+      background: linear-gradient(135deg, #24292e, #3b3f44);
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #ddd;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .mindmap-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .mindmap-list li {
+      background: rgba(255, 255, 255, 0.95);
+      margin: 20px 0;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .mindmap-list li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .mindmap-thumb {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      flex-shrink: 0;
+    }
+
+    .mindmap-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mindmap-list a {
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #0366d6;
+      margin-bottom: 5px;
+    }
+
+    .mindmap-list a:hover {
+      text-decoration: underline;
+    }
+
+    .mindmap-desc {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧠 My Mindmaps</h1>
+    <p>Visual knowledge, structured and simplified</p>
+  </header>
+
+  <main>
+    <ul class="mindmap-list">
+      <li>
+        <img src="images/mindmap1-thumb.png" alt="Mindmap 1 preview" class="mindmap-thumb">
+        <div class="mindmap-details">
+          <a href="mindmap1.html">Mindmap 1: Example Topic</a>
+          <p class="mindmap-desc">A structured view of Example Topic and its sub-concepts.</p>
+        </div>
+      </li>
+
+      <li>
+        <img src="images/mindmap2-thumb.png" alt="Mindmap 2 preview" class="mindmap-thumb">
+        <div class="mindmap-details">
+          <a href="mindmap2.html">Mindmap 2: Another Topic</a>
+          <p class="mindmap-desc">Breakdown of Another Topic for quick understanding.</p>
+        </div>
+      </li>
+
+      <li>
+        <img src="images/mindmap3-thumb.png" alt="Mindmap 3 preview" class="mindmap-thumb">
+        <div class="mindmap-details">
+          <a href="mindmap3.html">Mindmap 3: Yet Another Topic</a>
+          <p class="mindmap-desc">Exploring sub-areas of Yet Another Topic in detail.</p>
+        </div>
+      </li>
+      <!-- Add more items here -->
+    </ul>
+  </main>
+
+  <footer>
+    <p>© 2025 Jaspreet's Mindmaps Repository</p>
+  </footer>
+</body>
+</html>
