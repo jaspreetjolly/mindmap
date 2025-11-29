@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(()=>{setTimeout(()=>{const{markmap:S,mm:Q}=window,$=new S.Toolbar;$.attach(Q);const I=$.render();I.setAttribute("style","position:absolute;bottom:20px;right:20px"),document.body.append(I)})})()</script><script>((l,U,M,R)=>{const N=l();window.mm=N.Markmap.create("svg#mindmap",(U||N.deriveOptions)(R),M),window.matchMedia("(prefers-color-scheme: dark)").matches&&document.documentElement.classList.add("markmap-dark")})(()=>window.markmap,null,{"content":"Key Usage Flow: DKE vs. BYOK","children":[{"content":"&#x1f6e1;&#xfe0f; Double Key Encryption (DKE) Flow","children":[{"content":"<strong>Focus:</strong> Client-Side Operation with External Customer KEK","children":[],"payload":{"tag":"li","lines":"3,4"}},{"content":"<strong>Key Components:</strong> DEK, MS KEK, Customer KEK (External)","children":[],"payload":{"tag":"li","lines":"4,5"}},{"content":"<strong>&#x1f510; Encryption (Wrapping) Steps:</strong>","children":[{"content":"1. <strong>Client Generates DEK:</strong> Office desktop client creates the Content Key.","children":[],"payload":{"tag":"li","lines":"6,7","listIndex":1}},{"content":"2. <strong>Client Encrypts Data:</strong> Uses DEK to encrypt the document locally.","children":[],"payload":{"tag":"li","lines":"7,8","listIndex":2}},{"content":"3. <strong>Client Requests Public Keys:</strong> Fetches MS Public KEK (from Azure RMS) AND Customer Public KEK (from External DKE Service).","children":[],"payload":{"tag":"li","lines":"8,9","listIndex":3}},{"content":"4. <strong>Client Double-Wraps DEK:</strong> Wraps DEK with both Public KEKs.","children":[],"payload":{"tag":"li","lines":"9,10","listIndex":4}},{"content":"5. <strong>Store:</strong> Stores Double-Wrapped DEK in the file header.","children":[],"payload":{"tag":"li","lines":"10,11","listIndex":5}}],"payload":{"tag":"li","lines":"5,11"}},{"content":"<strong>&#x1f513; Decryption (Unwrapping) Steps:</strong>","children":[{"content":"1. <strong>Client Retrieves File:</strong> Gets file and Double-Wrapped DEK.","children":[],"payload":{"tag":"li","lines":"12,13","listIndex":1}},{"content":"2. <strong>1st Unwrap (MS):</strong> Client sends DEK to Azure RMS &#x2192; MS Private KEK unwraps layer 1.","children":[],"payload":{"tag":"li","lines":"13,14","listIndex":2}},{"content":"3. <strong>2nd Unwrap (Customer):</strong> Client sends partially unwrapped DEK to <strong>Customer DKE Service</strong> (Auth check occurs).","children":[],"payload":{"tag":"li","lines":"14,15","listIndex":3}},{"content":"4. <strong>HSM Operation:</strong> Customer Private KEK (inside HSM) unwraps layer 2 &#x2192; Plaintext DEK returned to client.","children":[],"payload":{"tag":"li","lines":"15,16","listIndex":4}},{"content":"5. <strong>Client Decrypts Data:</strong> Uses Plaintext DEK locally.","children":[],"payload":{"tag":"li","lines":"16,17","listIndex":5}},{"content":"6. <strong>Result:</strong> Customer Private KEK <strong>never leaves</strong> the HSM; M365 never sees the plaintext DEK.","children":[],"payload":{"tag":"li","lines":"17,19","listIndex":6}}],"payload":{"tag":"li","lines":"11,19"}}],"payload":{"tag":"h2","lines":"2,3"}},{"content":"&#x1f512; Bring Your Own Key (BYOK) KEK Flow","children":[{"content":"<strong>Focus:</strong> Server-Side Operation with Customer KEK in Azure KV","children":[],"payload":{"tag":"li","lines":"20,21"}},{"content":"<strong>Key Components:</strong> DEK, Customer KEK (Inside Azure KV HSM)","children":[],"payload":{"tag":"li","lines":"21,22"}},{"content":"<strong>Key Transfer Pre-Step:</strong> Customer Private KEK securely imported into Azure Key Vault (AKV) HSM using a separate Key Exchange KEK.","children":[],"payload":{"tag":"li","lines":"22,23"}},{"content":"<strong>&#x1f510; Encryption (Wrapping) Steps:</strong>","children":[{"content":"1. <strong>RMS Generates DEK:</strong> Azure RMS creates the Content Key.","children":[],"payload":{"tag":"li","lines":"24,25","listIndex":1}},{"content":"2. <strong>RMS Encrypts Data:</strong> Azure RMS uses DEK to encrypt the document.","children":[],"payload":{"tag":"li","lines":"25,26","listIndex":2}},{"content":"3. <strong>RMS Invokes AKV:</strong> RMS sends a <code>wrapKey</code> request to AKV.","children":[],"payload":{"tag":"li","lines":"26,27","listIndex":3}},{"content":"4. <strong>AKV Operation:</strong> Customer Private KEK (inside AKV HSM) wraps the DEK.","children":[],"payload":{"tag":"li","lines":"27,28","listIndex":4}},{"content":"5. <strong>Store:</strong> Wrapped DEK returned to RMS and stored in the file header.","children":[],"payload":{"tag":"li","lines":"28,29","listIndex":5}}],"payload":{"tag":"li","lines":"23,29"}},{"content":"<strong>&#x1f513; Decryption (Unwrapping) Steps:</strong>","children":[{"content":"1. <strong>Service Invokes AKV:</strong> Azure RMS (or M365 service) requests file and sends wrapped DEK to AKV.","children":[],"payload":{"tag":"li","lines":"30,31","listIndex":1}},{"content":"2. <strong>AKV Operation:</strong> Customer Private KEK (inside AKV HSM) unwraps the DEK.","children":[],"payload":{"tag":"li","lines":"31,32","listIndex":2}},{"content":"3. <strong>Key Release:</strong> Plaintext DEK is returned to Azure RMS.","children":[],"payload":{"tag":"li","lines":"32,33","listIndex":3}},{"content":"4. <strong>Service Decrypts Data:</strong> RMS uses Plaintext DEK to decrypt the content.","children":[],"payload":{"tag":"li","lines":"33,34","listIndex":4}},{"content":"5. <strong>Result:</strong> M365 services <strong>can access</strong> plaintext DEK, enabling full service functionality (eDiscovery, Web Apps).","children":[],"payload":{"tag":"li","lines":"34,35","listIndex":5}}],"payload":{"tag":"li","lines":"29,35"}}],"payload":{"tag":"h2","lines":"19,20"}}],"payload":{"tag":"h1","lines":"0,1"}},null)</script>
+</body>
+</html>
