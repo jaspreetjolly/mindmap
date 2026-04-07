@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/markmap-toolbar@0.18.12/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js"></script><script src="https://unpkg.com/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://unpkg.com/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Copilot Agent Platform Decision Tree","children":[{"content":"Choose Copilot Studio If","children":[{"content":"&#x23f1;&#xfe0f; Fast time-to-market (days/weeks)","children":[],"payload":{"tag":"li","lines":"3,4"}},{"content":"&#x1f465; Business user-led development","children":[],"payload":{"tag":"li","lines":"4,5"}},{"content":"&#x1f517; Native M365/Teams/Dynamics integration","children":[],"payload":{"tag":"li","lines":"5,6"}},{"content":"&#x1f4ac; Conversational experiences are primary","children":[],"payload":{"tag":"li","lines":"6,7"}},{"content":"&#x1f4da; Simple data volumes","children":[{"content":"500 uploaded files per agent","children":[],"payload":{"tag":"li","lines":"8,9"}},{"content":"25 SharePoint URLs (no file count limit)","children":[],"payload":{"tag":"li","lines":"9,10"}}],"payload":{"tag":"li","lines":"7,10"}},{"content":"&#x1f6e1;&#xfe0f; Power Platform governance is sufficient","children":[],"payload":{"tag":"li","lines":"10,11"}},{"content":"&#x1f50c; Pre-built Power Platform connectors suffice","children":[],"payload":{"tag":"li","lines":"11,12"}},{"content":"&#x1f4c8; Simple to moderate complexity","children":[],"payload":{"tag":"li","lines":"12,13"}},{"content":"&#x1f3af; Uses built-in models or consumes custom models via BYOM","children":[],"payload":{"tag":"li","lines":"13,15"}}],"payload":{"tag":"h2","lines":"2,3"}},{"content":"Choose Azure AI Foundry If","children":[{"content":"&#x1f4bb; Code-first development preferred","children":[],"payload":{"tag":"li","lines":"16,17"}},{"content":"&#x1f468;&#x200d;&#x1f4bb; Professional developer teams involved","children":[],"payload":{"tag":"li","lines":"17,18"}},{"content":"&#x1f3af; Need to fine-tune or train custom models","children":[],"payload":{"tag":"li","lines":"18,19"}},{"content":"&#x1f4ca; Large-scale data or complex knowledge bases","children":[],"payload":{"tag":"li","lines":"19,20"}},{"content":"&#x1f916; Complex multi-agent workflows management","children":[],"payload":{"tag":"li","lines":"20,21"}},{"content":"&#x1f50d; Advanced RAG with fine-grained control","children":[{"content":"Custom chunking, embeddings, vector indices","children":[],"payload":{"tag":"li","lines":"22,23"}}],"payload":{"tag":"li","lines":"21,23"}},{"content":"&#x1f504; Full DevOps/CI-CD integration required","children":[],"payload":{"tag":"li","lines":"23,24"}},{"content":"&#x26a1; High performance and enterprise-grade scalability","children":[],"payload":{"tag":"li","lines":"24,26"}}],"payload":{"tag":"h2","lines":"15,16"}},{"content":"Choose Hybrid Approach If","children":[{"content":"&#x1f3e2; Enterprise-grade solution needed","children":[],"payload":{"tag":"li","lines":"27,28"}},{"content":"&#x1f3af; Best of both worlds required","children":[],"payload":{"tag":"li","lines":"28,29"}},{"content":"&#x1f500; Mix of simple and complex requirements","children":[],"payload":{"tag":"li","lines":"29,30"}},{"content":"&#x1f4c5; Phased implementation planned","children":[],"payload":{"tag":"li","lines":"30,31"}},{"content":"&#x1f310; Multi-environment or multi-team needs","children":[],"payload":{"tag":"li","lines":"31,32"}},{"content":"&#x1f680; Long-term scalability important","children":[],"payload":{"tag":"li","lines":"32,33"}},{"content":"&#x1f4bc; Strategic flexibility valued","children":[],"payload":{"tag":"li","lines":"33,34"}},{"content":"&#x1f52e; Future growth anticipated","children":[],"payload":{"tag":"li","lines":"34,35"}},{"content":"&#x1f9e9; Studio as front door, Foundry as engine room","children":[],"payload":{"tag":"li","lines":"35,36"}}],"payload":{"tag":"h2","lines":"26,27"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
